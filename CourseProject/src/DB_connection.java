@@ -39,24 +39,14 @@ public class DB_connection {
     public static short signDB(String log, String pass) throws SQLException {
         boolean is = false;
         Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM logandpass");
-        if (log != "" && pass != "") {
-            while (resultSet.next()) {
-                System.out.println(resultSet.getString(1));
-                if (resultSet.getString(1) == log) {
-                    is = true;
-                }
-            }
-            if(!is){
-                statement.executeUpdate("INSERT INTO logandpass VALUES('" + log + "', '" + pass + "')");
-                statement.close();
-                resultSet.close();
-                return 1;
-            }else{return 2;}
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM logandpass WHERE login = '" + log + "'");
+        if (resultSet.next()) {
+            return 2;
         } else {
+            statement.executeUpdate("INSERT INTO logandpass VALUES('" + log + "', '" + pass + "')");
             statement.close();
             resultSet.close();
-            return 0;
+            return 1;
         }
     }
 }

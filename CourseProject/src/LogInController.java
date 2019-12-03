@@ -35,22 +35,20 @@ public class LogInController {
     void initialize() {
         signBtn.setOnAction(event -> {
             try {
-                    if(DB_connection.signDB(signLog.getText(), signPass.getText()) == 1){
+                if(signLog.getText().isEmpty() | signPass.getText().isEmpty()) {
+                    signFail.setText("Введите логин и/или пароль!");
+                }
+                else{
+                    if (DB_connection.signDB(signLog.getText(), signPass.getText()) == 1) {
                         signFail.setText("Успешная регистрация! Можете войти в приложение.");
-                    }
-                    else if(DB_connection.signDB(signLog.getText(), signPass.getText()) == 2){
+                    } else if (DB_connection.signDB(signLog.getText(), signPass.getText()) == 2) {
                         signFail.setText("Логин уже занят! Попробуйте другой.");
                     }
-                    else{
-                        signFail.setText("Введите логин и/или пароль!");
-                    }
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         });
-        assert signLog != null : "fx:id=\"Login\" was not injected: check your FXML file 'sample.fxml'.";
-        assert signPass != null : "fx:id=\"Password\" was not injected: check your FXML file 'sample.fxml'.";
     }
-
 }
 
