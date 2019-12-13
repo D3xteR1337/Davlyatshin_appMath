@@ -18,10 +18,9 @@ public class LogIn extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("LogInGUI.fxml"));
         Scene LogInScene = new Scene(root);
         LogInGUI.setScene(LogInScene);
-        LogInGUI.setMinWidth(490);
-        LogInGUI.setMaxWidth(490);
-        LogInGUI.setMinHeight(240);
-        LogInGUI.setMaxHeight(240);
+        LogInGUI.setWidth(485);
+        LogInGUI.setHeight(235);
+        LogInGUI.setResizable(false);
         LogInGUI.show();
     }
 }

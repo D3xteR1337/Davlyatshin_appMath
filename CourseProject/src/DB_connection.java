@@ -36,17 +36,32 @@ public class DB_connection {
         }
     }
 
-    public static short signDB(String log, String pass) throws SQLException {
-        boolean is = false;
+    public static boolean signDB(String fname, String lname, String log, String pass) throws SQLException {
         Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM logandpass WHERE login = '" + log + "'");
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM signup WHERE username = '" + log + "'");
         if (resultSet.next()) {
-            return 2;
-        } else {
-            statement.executeUpdate("INSERT INTO logandpass VALUES('" + log + "', '" + pass + "')");
             statement.close();
             resultSet.close();
-            return 1;
+            return false;
+        } else {
+            statement.executeUpdate("INSERT INTO signup VALUES('" + fname + "', '" + lname + "', '" + log + "', '" + pass + "')");
+            statement.close();
+            resultSet.close();
+            return true;
+        }
+    }
+    public static boolean loginDB(String log, String pass) throws SQLException {
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM logandpass WHERE login = '" + log + "' AND pass = '"+pass+"'");
+        if (resultSet.next()) {
+            statement.close();
+            resultSet.close();
+            return true;
+        }
+        else{
+            statement.close();
+            resultSet.close();
+            return false;
         }
     }
 }
