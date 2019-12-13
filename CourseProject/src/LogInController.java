@@ -62,6 +62,21 @@ public class LogInController {
                 }
             }
         });
+        signBtn.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                Parent root;
+                try{
+                    root = FXMLLoader.load(getClass().getResource("SignUpGUI.fxml"));
+                    Stage stage = new Stage();
+                    Scene scene = new Scene(root, 460, 345);
+                    stage.setScene(scene);
+                    stage.setResizable(false);
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 }
 

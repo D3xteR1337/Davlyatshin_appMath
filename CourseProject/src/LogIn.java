@@ -16,10 +16,8 @@ public class LogIn extends Application {
     public void start(Stage LogInGUI) throws Exception {
         LogInGUI.setTitle("Вход");
         Parent root = FXMLLoader.load(getClass().getResource("LogInGUI.fxml"));
-        Scene LogInScene = new Scene(root);
+        Scene LogInScene = new Scene(root, 360, 230);
         LogInGUI.setScene(LogInScene);
-        LogInGUI.setWidth(485);
-        LogInGUI.setHeight(235);
         LogInGUI.setResizable(false);
         LogInGUI.show();
     }

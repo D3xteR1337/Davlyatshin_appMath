@@ -7,41 +7,46 @@ import javafx.scene.control.TextField;
 public class SignUpController {
 
 
-        @FXML
-        private TextField fnameField;
+    @FXML
+    private TextField fnameField;
 
-        @FXML
-        private TextField lnameField;
+    @FXML
+    private TextField lnameField;
 
-        @FXML
-        private TextField username;
+    @FXML
+    private TextField username;
 
-        @FXML
-        private TextField passField;
+    @FXML
+    private TextField passField;
 
-        @FXML
-        private TextField repassField;
+    @FXML
+    private TextField repassField;
 
-        @FXML
-        private Label signFail;
+    @FXML
+    private Label signFail;
 
-        @FXML
-        private Button signBtn;
+    @FXML
+    private Button signBtn;
 
-/*    void initialize() {
+    @FXML
+    void initialize() {
         signBtn.setOnAction(event -> {
             try {
-                if (signLog.getText().isEmpty() | signPass.getText().isEmpty()) {
-                    signFail.setText("Введите логин и/или пароль!");
-                } else {
-                    if (DB_connection.signDB(signLog.getText(), signPass.getText())) {
-                        signFail.setText("Успешная регистрация! Можете войти в приложение.");
+                if(username.getText().isEmpty() | passField.getText().isEmpty() | fnameField.getText().isEmpty() | lnameField.getText().isEmpty() | repassField.getText().isEmpty()) signFail.setText("Заполните все данные!");
+                else {
+                    if (passField.getText().equals(repassField.getText())) {
+                        if (DB_connection.signDB(fnameField.getText(), lnameField.getText(), username.getText(), passField.getText())) {
+                            signFail.setText("Успешная регистрация! Можете войти в приложение.");
+                        } else {
+                            signFail.setText("Логин уже занят! Попробуйте другой.");
+                        }
                     } else {
-                        signFail.setText("Логин уже занят! Попробуйте другой.");
+                        signFail.setText("Пароли не совпадают!");
                     }
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        });*/
+        });
     }
+}

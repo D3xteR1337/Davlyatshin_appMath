@@ -3,35 +3,38 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="200.0" prefWidth="477.0" style="-fx-background-color: #3F2996;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LogInController">
+<AnchorPane prefHeight="230.0" prefWidth="375.0" style="-fx-background-color: #3F2996;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LogInController">
    <children>
-      <TextField fx:id="loginLog" layoutX="24.0" layoutY="53.0" prefHeight="25.0" prefWidth="196.0" />
-      <PasswordField fx:id="loginPass" layoutX="25.0" layoutY="103.0" prefHeight="25.0" prefWidth="196.0" />
-      <Button fx:id="loginBtn" layoutX="72.0" layoutY="167.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="101.0" text="Войти" />
-      <TextField fx:id="signLog" layoutX="258.0" layoutY="53.0" prefHeight="25.0" prefWidth="196.0" />
-      <PasswordField fx:id="signPass" layoutX="258.0" layoutY="103.0" prefHeight="25.0" prefWidth="196.0" />
-      <Button fx:id="signBtn" layoutX="305.0" layoutY="167.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="101.0" text="Регистрация" />
-      <Label layoutX="103.0" layoutY="14.0" text="Вход" textFill="#e0f0ff">
+      <TextField fx:id="loginLog" layoutX="130.0" layoutY="73.0" prefHeight="25.0" prefWidth="196.0" />
+      <PasswordField fx:id="loginPass" layoutX="130.0" layoutY="110.0" prefHeight="25.0" prefWidth="196.0" />
+      <Button fx:id="loginBtn" layoutX="198.0" layoutY="170.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="128.0" text="Войти">
          <font>
-            <Font size="18.0" />
+            <Font name="Book Antiqua" size="16.0" />
+         </font></Button>
+      <Button fx:id="signBtn" layoutX="40.0" layoutY="170.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="128.0" text="Регистрация">
+         <font>
+            <Font name="Book Antiqua" size="16.0" />
+         </font></Button>
+      <Label layoutX="147.0" layoutY="14.0" text="Вход" textFill="#e0f0ff">
+         <font>
+            <Font name="Book Antiqua" size="36.0" />
          </font>
       </Label>
-      <Label layoutX="304.0" layoutY="14.0" text="Регистрация" textFill="#e0f0ff">
+      <Label layoutX="45.0" layoutY="72.0" text="Логин:" textFill="#cceaea">
          <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="24.0" layoutY="36.0" text="Логин:" textFill="#cceaea" />
-      <Label layoutX="24.0" layoutY="85.0" text="Пароль:" textFill="#cceaea" />
-      <Label layoutX="258.0" layoutY="36.0" text="Логин:" textFill="#cceaea" />
-      <Label layoutX="258.0" layoutY="85.0" text="Пароль:" textFill="#cceaea" />
-      <Separator layoutX="239.0" layoutY="-5.0" orientation="VERTICAL" prefHeight="214.0" prefWidth="6.0" />
-      <Label fx:id="loginFail" layoutX="24.0" layoutY="135.0" textFill="#cceaea" />
-      <Label fx:id="signFail" layoutX="258.0" layoutY="135.0" textFill="#cceaea" />
+            <Font name="Book Antiqua" size="18.0" />
+         </font></Label>
+      <Label layoutX="45.0" layoutY="111.0" text="Пароль:" textFill="#cceaea">
+         <font>
+            <Font name="Book Antiqua" size="18.0" />
+         </font></Label>
+      <Label fx:id="loginFail" layoutX="40.0" layoutY="144.0" prefHeight="23.0" prefWidth="284.0" textFill="#cceaea">
+         <font>
+            <Font name="Book Antiqua" size="14.0" />
+         </font></Label>
    </children>
 </AnchorPane>
