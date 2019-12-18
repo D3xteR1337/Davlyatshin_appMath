@@ -4,11 +4,13 @@
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -16,35 +18,59 @@
   <tabs>
     <Tab text="Выбор области">
       <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #2C3089;" />
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #2C3089;">
+               <children>
+                  <DatePicker fx:id="dateStart" layoutX="139.0" layoutY="37.0" style="-fx-background-color: #8488EB;" />
+                  <DatePicker fx:id="dateEnd" layoutX="139.0" layoutY="81.0" style="-fx-background-color: #8488EB;" />
+                  <Label layoutX="82.0" layoutY="39.0" text="Начало" textFill="#d6dbdf">
+                     <font>
+                        <Font name="Book Antiqua" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="89.0" layoutY="83.0" text="Конец" textFill="#d6dbdf">
+                     <font>
+                        <Font name="Book Antiqua" size="16.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="downloadBtn" layoutX="139.0" layoutY="125.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: #8488EB;" text="Скачать данные" textFill="#d6dbdf">
+                     <font>
+                        <Font name="Book Antiqua" size="16.0" />
+                     </font>
+                  </Button>
+                  <TableView fx:id="infoTabView" layoutX="439.0" layoutY="37.0" prefHeight="550.0" prefWidth="500.0" style="-fx-background-color: #8488EB;">
+                    <columns>
+                      <TableColumn fx:id="dateColumn" prefWidth="100.0" text="Date" />
+                      <TableColumn fx:id="openColumn" prefWidth="100.0" text="Open" />
+                        <TableColumn fx:id="highColumn" prefWidth="100.0" text="High" />
+                        <TableColumn fx:id="lowColumn" prefWidth="100.0" text="Low" />
+                        <TableColumn fx:id="closeColumn" prefWidth="100.0" text="Close" />
+                    </columns>
+                  </TableView>
+                  <Button fx:id="createtableBtn" layoutX="139.0" layoutY="176.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="174.0" style="-fx-background-color: #8488EB;" text="Построить таблицу" textFill="#d6dbdf">
+                     <font>
+                        <Font name="Book Antiqua" size="16.0" />
+                     </font>
+                  </Button>
+               </children></AnchorPane>
       </content>
     </Tab>
     <Tab text="График">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #2C3089;">
                <children>
-                  <DatePicker fx:id="dateStart" layoutX="55.0" layoutY="551.0" style="-fx-background-color: #8488EB;" />
-                  <DatePicker fx:id="dateEnd" layoutX="277.0" layoutY="551.0" style="-fx-background-color: #8488EB;" />
-                  <Label layoutX="8.0" layoutY="554.0" text="Начало" textFill="#d6dbdf">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="236.0" layoutY="554.0" text="Конец" textFill="#d6dbdf">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
                   <LineChart fx:id="graphPane" layoutX="14.0" layoutY="14.0" prefHeight="531.0" prefWidth="1007.0" style="-fx-background-color: #5D60B6;">
                     <xAxis>
-                      <CategoryAxis side="BOTTOM" />
+                      <CategoryAxis side="BOTTOM" fx:id="xAxis" />
                     </xAxis>
                     <yAxis>
-                      <NumberAxis side="LEFT" />
+                      <NumberAxis fx:id="yAxis" side="LEFT" />
                     </yAxis>
                   </LineChart>
-                  <ChoiceBox fx:id="ChoiseBox" layoutX="55.0" layoutY="589.0" prefHeight="25.0" prefWidth="397.0" style="-fx-background-color: #8488EB;" />
-                  <Button fx:id="GenerateBtn" layoutX="900.0" layoutY="589.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="112.0" style="-fx-background-color: #8488EB;" text="Сгенерировать" textFill="#d6dbdf" />
+                  <Button fx:id="GenerateBtn" layoutX="868.0" layoutY="583.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="153.0" style="-fx-background-color: #8488EB;" text="Сгенерировать" textFill="#d6dbdf">
+                     <font>
+                        <Font name="Book Antiqua" size="16.0" />
+                     </font></Button>
+                  <ComboBox fx:id="comboBox" layoutX="40.0" layoutY="589.0" prefWidth="400.0" style="-fx-background-color: #8488EB;" />
                </children></AnchorPane>
       </content>
     </Tab>

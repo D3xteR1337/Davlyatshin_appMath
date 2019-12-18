@@ -1,3 +1,7 @@
+import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.*;
 import java.util.Scanner;
 
@@ -46,6 +50,7 @@ public class DB_connection {
         } else {
             statement.executeUpdate("INSERT INTO signup VALUES('" + fname + "', '" + lname + "', '" + log + "', '" + pass + "')");
             statement.executeUpdate("INSERT INTO logandpass VALUES('" + log + "', '" + pass + "')");
+            statement.executeUpdate("INSERT INTO userdata VALUES('" + log + "')");
             statement.close();
             resultSet.close();
             return true;
