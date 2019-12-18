@@ -1,8 +1,10 @@
 import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.stage.Stage;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class DB_connection {
@@ -56,18 +58,53 @@ public class DB_connection {
             return true;
         }
     }
+
     public static boolean loginDB(String log, String pass) throws SQLException {
         Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM logandpass WHERE login = '" + log + "' AND pass = '"+pass+"'");
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM logandpass WHERE login = '" + log + "' AND pass = '" + pass + "'");
         if (resultSet.next()) {
             statement.close();
             resultSet.close();
             return true;
-        }
-        else{
+        } else {
             statement.close();
             resultSet.close();
             return false;
+        }
+    }
+
+    public static void addData(ArrayList<TableInfo> data) throws SQLException {
+        try {
+            Statement statement = connection.createStatement();
+            for (TableInfo inf : data) {
+                statement.executeUpdate("INSERT INTO simpletable VALUES('" + inf.getYear() + "-" + inf.getMonth() + "-" + inf.getDay()
+                        + "', '" + inf.getOpenPrice() + "', '" + inf.getHighPrice() + "', '" + inf.getLowPrice() + "', '" + inf.getClosePrice() + "')");
+            }
+            statement.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static ObservableList<SimpleInfo> getSimpleData(String name, String dateFrom, String dateTo) {
+
+        ObservableList<SimpleInfo> infoList = FXCollections.observableArrayList();
+        String sql = "SELECT dateb, " + name + "price" + " FROM simpletable";
+        try {
+            PreparedStatement prSt = connection.prepareStatement(sql);
+            ResultSet res = prSt.executeQuery();
+            while (res.next()) {
+                SimpleInfo obj = new SimpleInfo();
+                String[] dateArr = res.getString("dateb").split("-");
+                obj.setDate(dateArr[2] + dateArr[1] + dateArr[0]);
+                obj.setValue(res.getDouble(name));
+                infoList.add(obj);
+            }
+            prSt.close();
+            return infoList;
+        } catch (Exception ex) {
+            ex.getMessage();
+            return null;
         }
     }
 }

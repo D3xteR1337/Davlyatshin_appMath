@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class WorkSpaceController {
@@ -66,12 +67,12 @@ public class WorkSpaceController {
     void initialize() {
 
         ObservableList<String> typeDataList = FXCollections.observableArrayList(
-                "Open", "High", "Low", "Close"
+                "open", "high", "low", "close"
         );
         comboBox.setItems(typeDataList);
 
         GenerateBtn.setOnAction(event -> {
-       //     graphicList =
+            graphicList = DB_connection.getSimpleData(comboBox.getValue(), dateStart.getValue().toString(), dateEnd.getValue().toString());
             graphPane.getData().clear();
 
             int n = graphicList.size();
@@ -89,11 +90,11 @@ public class WorkSpaceController {
             XYChart.Series series = new XYChart.Series();
             series.setName(comboBox.getValue());
             XYChart.Series mnkSeries = new XYChart.Series();
-            mnkSeries.setName("least square");
+            mnkSeries.setName("МНК");
             XYChart.Series polynom2ndSeries = new XYChart.Series();
-            mnkSeries.setName("nonlinear graphic");
+            mnkSeries.setName("Нелинейный график");
             XYChart.Series exponentialSeries = new XYChart.Series();
-            exponentialSeries.setName("exponential graphic");
+            exponentialSeries.setName("Экспоненциальный график");
 
             ObservableList<XYChart.Data> graphicData = FXCollections.observableArrayList();
             ObservableList<XYChart.Data> mnkData = FXCollections.observableArrayList();
@@ -138,12 +139,12 @@ public class WorkSpaceController {
                 FileReaderTable.downloadCSV(dateFrom, dateTo);
                 Thread.currentThread().sleep(2000);
                 data = FileReaderTable.parseCSV();
+                DB_connection.addData(data);
                 tableList = FXCollections.observableArrayList(data);
 
-            } catch (IOException | InterruptedException e) {
+            } catch (IOException | InterruptedException | SQLException e) {
                 e.printStackTrace();
             }
         });
-
     }
 }
