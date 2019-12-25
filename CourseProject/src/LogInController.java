@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -52,6 +53,7 @@ public class LogInController {
                         Stage stage = new Stage();
                         Scene scene = new Scene(root, 1035, 660);
                         stage.setTitle("Осноовное рабочее пространство");
+                        stage.getIcons().add(new Image("main.png"));
                         stage.setScene(scene);
                         stage.setResizable(false);
                         stage.show();
@@ -69,6 +71,8 @@ public class LogInController {
                     root = FXMLLoader.load(getClass().getResource("SignUpGUI.fxml"));
                     Stage stage = new Stage();
                     Scene scene = new Scene(root, 460, 345);
+                    stage.getIcons().add(new Image("signup.png"));
+                    stage.setTitle("Регистрация");
                     stage.setScene(scene);
                     stage.setResizable(false);
                     stage.show();

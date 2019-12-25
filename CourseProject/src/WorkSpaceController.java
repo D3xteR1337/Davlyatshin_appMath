@@ -67,12 +67,12 @@ public class WorkSpaceController {
     void initialize() {
 
         ObservableList<String> typeDataList = FXCollections.observableArrayList(
-                "open", "high", "low", "close"
+                "Openprice", "Highprice", "Lowprice", "Closeprice"
         );
         comboBox.setItems(typeDataList);
 
         GenerateBtn.setOnAction(event -> {
-            graphicList = DB_connection.getSimpleData(comboBox.getValue(), dateStart.getValue().toString(), dateEnd.getValue().toString());
+            graphicList = DB_connection.getSimpleData(comboBox.getValue().toLowerCase(), dateStart.getValue().toString(), dateEnd.getValue().toString());
             graphPane.getData().clear();
 
             int n = graphicList.size();
@@ -83,41 +83,41 @@ public class WorkSpaceController {
                 y[i] = graphicList.get(i).getValue();
             }
             Maths.mnk(x, y);
-            Maths.polynom2nd(x, y);
+            Maths.logfunc(x, y);
             Maths.exponential(x, y);
             System.out.println(Maths.lnA3 + " " + Maths.b3);
 
             XYChart.Series series = new XYChart.Series();
             series.setName(comboBox.getValue());
             XYChart.Series mnkSeries = new XYChart.Series();
-            mnkSeries.setName("МНК");
-            XYChart.Series polynom2ndSeries = new XYChart.Series();
-            mnkSeries.setName("Нелинейный график");
+            mnkSeries.setName("Линейная регрессия");
+            XYChart.Series logfunc = new XYChart.Series();
+            logfunc.setName("Логарифмическая аппроксимация");
             XYChart.Series exponentialSeries = new XYChart.Series();
             exponentialSeries.setName("Экспоненциальный график");
 
             ObservableList<XYChart.Data> graphicData = FXCollections.observableArrayList();
             ObservableList<XYChart.Data> mnkData = FXCollections.observableArrayList();
-            ObservableList<XYChart.Data> polynom2ndData = FXCollections.observableArrayList();
+            ObservableList<XYChart.Data> logfuncData = FXCollections.observableArrayList();
             ObservableList<XYChart.Data> exponentialData = FXCollections.observableArrayList();
 
 
             for (int i = 0; i < n; i++) {
                 graphicData.add(new XYChart.Data(graphicList.get(i).getDate(), graphicList.get(i).getValue()));
                 mnkData.add(new XYChart.Data(graphicList.get(i).getDate(), Maths.linearFun(x[i])));
-                polynom2ndData.add(new XYChart.Data(graphicList.get(i).getDate(), Maths.nonlinearFun(x[i])));
+                logfuncData.add(new XYChart.Data(graphicList.get(i).getDate(), Maths.nonlinearFun(x[i])));
                 exponentialData.add(new XYChart.Data(graphicList.get(i).getDate(), Maths.expFun(x[i])));
 
             }
             series.setData(graphicData);
             mnkSeries.setData(mnkData);
-            polynom2ndSeries.setData(polynom2ndData);
+            logfunc.setData(logfuncData);
             exponentialSeries.setData(exponentialData);
 
 
             graphPane.getData().add(series);
             graphPane.getData().add(mnkSeries);
-            graphPane.getData().add(polynom2ndSeries);
+            graphPane.getData().add(logfunc);
             graphPane.getData().add(exponentialSeries);
         });
 

@@ -78,7 +78,7 @@ public class DB_connection {
             Statement statement = connection.createStatement();
             for (TableInfo inf : data) {
                 statement.executeUpdate("INSERT INTO simpletable VALUES('" + inf.getYear() + "-" + inf.getMonth() + "-" + inf.getDay()
-                        + "', '" + inf.getOpenPrice() + "', '" + inf.getHighPrice() + "', '" + inf.getLowPrice() + "', '" + inf.getClosePrice() + "')");
+                        + "', '" + inf.getOpenPrice() + "', '" + inf.getLowPrice() + "', '" + inf.getHighPrice() + "', '" + inf.getClosePrice() + "')");
             }
             statement.close();
         } catch (SQLException e) {
@@ -89,7 +89,7 @@ public class DB_connection {
     public static ObservableList<SimpleInfo> getSimpleData(String name, String dateFrom, String dateTo) {
 
         ObservableList<SimpleInfo> infoList = FXCollections.observableArrayList();
-        String sql = "SELECT dateb, " + name + "price" + " FROM simpletable";
+        String sql = "SELECT dateb, " + name + " FROM simpletable WHERE dateb BETWEEN '" + dateFrom + "' AND '" + dateTo + "' ;";
         try {
             PreparedStatement prSt = connection.prepareStatement(sql);
             ResultSet res = prSt.executeQuery();
@@ -103,7 +103,7 @@ public class DB_connection {
             prSt.close();
             return infoList;
         } catch (Exception ex) {
-            ex.getMessage();
+            System.out.println(ex.getMessage());
             return null;
         }
     }

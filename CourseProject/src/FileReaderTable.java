@@ -29,7 +29,7 @@ public class FileReaderTable {
         String[] toArr = to.split("-");
 
 
-        String urlString = "http://export.finam.ru/SBER_191114_191214.csv?market=520&em=484429&code=SBER&" +
+        String urlString = "http://export.finam.ru/SBER_" + fromArr[2] + fromArr[1] + fromArr[0] + "_" + toArr[2] + toArr[1] + toArr[0] +".csv?market=520&em=484429&code=SBER&" +
                 "apply=0&df=" + Integer.parseInt(fromArr[2]) + "&mf=" + (Integer.parseInt(fromArr[1]) - 1) + "&yf=" + fromArr[0] + "&from=" + fromArr[2] + "." + fromArr[1] +
                 "." + fromArr[0] + "&dt=" + Integer.parseInt(toArr[2]) +
                 "&mt=" + (Integer.parseInt(toArr[1]) - 1) + "&yt=" + toArr[0] +
