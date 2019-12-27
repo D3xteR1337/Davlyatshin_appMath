@@ -52,7 +52,6 @@ public class DB_connection {
         } else {
             statement.executeUpdate("INSERT INTO signup VALUES('" + fname + "', '" + lname + "', '" + log + "', '" + pass + "')");
             statement.executeUpdate("INSERT INTO logandpass VALUES('" + log + "', '" + pass + "')");
-            statement.executeUpdate("INSERT INTO userdata VALUES('" + log + "')");
             statement.close();
             resultSet.close();
             return true;

@@ -52,7 +52,7 @@ public class LogInController {
                         root = FXMLLoader.load(getClass().getResource("WorkSpace.fxml"));
                         Stage stage = new Stage();
                         Scene scene = new Scene(root, 1035, 660);
-                        stage.setTitle("Осноовное рабочее пространство");
+                        stage.setTitle("Основное рабочее пространство");
                         stage.getIcons().add(new Image("main.png"));
                         stage.setScene(scene);
                         stage.setResizable(false);
